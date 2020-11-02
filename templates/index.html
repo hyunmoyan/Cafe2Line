@@ -1,0 +1,291 @@
+<!Doctype html>
+<html lang="ko">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+
+        <!-- 구글폰트 -->
+        <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+
+
+        <title>CAFE2LINE</title>
+
+        <!-- style -->
+        <style type="text/css">
+            * {
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+
+            .card-title {
+                color: #008E38;
+                font-weight: bold;
+            }
+
+            .comment {
+                color: black;
+                /*font-weight: bold;*/
+            }
+
+            .station {
+                margin-top: 3%;
+                color: black;
+            }
+
+            #post-box {
+                width: 600px;
+                height: 450px;
+                margin: 20px auto;
+                padding: 50px;
+                border: #008E38 solid;
+                border-radius: 5px;
+            }
+
+            #wrapbox {
+                margin: 100px 100px;
+            }
+
+            #square {
+                width: 320px;
+                height: 70px;
+                /*border: 3px solid white;*/
+                border-radius: 28px;
+                text-align: center;
+                position: absolute;
+                top: 90px;
+                left: 480px;
+                background-color: white;
+                vertical-align: middle;
+            }
+
+            #line {
+                background: #008E38;
+                width: auto;
+                height: 60px;
+                position: relative;
+                top: 0px;
+            }
+
+            #btn-post-box {
+                margin: auto;
+            }
+
+            .search div {
+                margin: 0 auto;
+            }
+
+
+            #border {
+                width: 350px;
+                height: 98px;
+                border: 3px solid white;
+                position: absolute;
+                top: 76px;
+                left: 463px;
+                border-radius: 38px;
+                background-color: #008E38;
+            }
+
+
+            #circle1 {
+                background-color: #008E38;
+                width: 50px;
+                height: 50px;
+                border-radius: 75px;
+                margin: 10px 18px;
+                font-size: 12px;
+                /*line-height: 100px;*/
+                position: absolute;
+                left: 10px;
+                border: 1px solid white;
+            }
+
+
+            #exampleFormControlInput1 {
+                position: absolute;
+                bottom: 15px;
+                left: 100px;
+                width: 180px;
+            }
+
+            .wrap2 {
+                position: relative;
+            }
+
+            #btn-post-box {
+                position: absolute;
+                bottom: 105px;
+                left: 12%;
+            }
+
+            #cards-box {
+                margin: 0px 10%;
+            }
+
+        </style>
+        <script>
+            // $(document).ready(function () {
+            //     $("#cards-box").html("");
+            //     showArticles();
+            // });
+            $(document).ready(function () {
+                $("#cards-box").html("");
+            });
+
+            function openClose() {
+                // id 값 post-box의 display 값이 block 이면(= 눈에 보이면)
+                if ($("#post-box").css("display") == "block") {
+                    // post-box를 가리고
+                    $("#post-box").hide();
+                    // 다시 버튼을 클릭하면, 박스 열기를 할 수 있게 텍스트 바꿔두기
+                    $("#btn-post-box").text("새로운 카페 등록하기!");
+                } else {
+                    // 아니면(눈에 보이지 않으면) post-box를 펴라
+                    $("#post-box").show();
+                    // 다시 버튼을 클릭하면, 박스 닫기를 할 수 있게 텍스트 바꿔두기
+                    $("#btn-post-box").text("포스팅 박스 닫기");
+                }
+            }
+
+            function postReset() {
+                $("#name_input").val('');
+                $("#station_input").val('');
+                $("#map_url_input").val('');
+                $("#description_input").val('');
+            }
+
+            function postArticle() {
+                let name = $("#name_input").val();
+                let station = $("#station_input").val();
+                let map_url = $("#map_url_input").val();
+                let description = $("#description_input").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/cafe",
+                    data: {
+                        name_give: name,
+                        station_give: station,
+                        map_url_give: map_url,
+                        description_give: description
+                    },
+                    success: function (response) { // 성공하면
+                        if (response['result'] == 'success') {
+                            postReset();
+                            openClose();
+                            alert(response['msg']);
+                        }
+                    }
+                })
+
+            }
+
+            function showArticles() {
+                $("#cards-box").html(``);
+                let search = $("#exampleFormControlInput1").val()
+                console.log(search)
+                $.ajax({
+                    type: "GET",
+                    url: "/cafe",
+                    data: {search_give: search},
+                    success: function (response) {
+                        alert("야호")
+                        let cafes = response['cafe'];
+                        for (let i = 0; i < cafes.length; i++) {
+                            makeCard(cafes[i]["image_url"], cafes[i]["map_url"], cafes[i]["name"], cafes[i]["station"], cafes[i]["description"])
+                        }
+                    }
+                })
+            }
+
+            function makeCard(image_url, map_url, name, station, description) {
+                let temp_html = `<div class="card">
+                        <img class="card-img-top" src="${image_url}" alt="Card image cap">
+                        <div class="card-body">
+                        <a href="${map_url}" target="_blank" class="card-title">${name}</a>
+                        <p class="card-text station">${station}</p>
+                        <p class="card-text comment">${description}</p>
+                        </div>
+                    </div>`;
+                $("#cards-box").empty();
+                $("#cards-box").append(temp_html);
+            }
+
+            // function showCards() {
+            //     $("#cards-box").html(``);
+            //     if ($("#post-box").css("display") == "block") {
+            //         // post-box를 가리고
+            //         $("#post-box").hide();
+            //         // 다시 버튼을 클릭하면, 박스 열기를 할 수 있게 텍스트 바꿔두기
+            //         $("#btn-post-box").text("새로운 카페 등록하기!");
+            //     }
+            //     showArticles();
+            // }
+        </script>
+
+    </head>
+
+    <body>
+        <div id="wrapbox">
+            <div class="search">
+
+                <div id="line"></div>
+                <div id="border">
+
+                </div>
+                <div class="line2">
+                    <div class="line" id="square">
+                        <button id="circle1" onclick="showArticles()">검색!
+                        </button>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                                   placeholder="ex) 신촌역">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap2">
+            <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-outline-success">새로운 카페
+                등록하기!
+            </button>
+
+        </div>
+
+        <div id="post-box" class="form-post" style="display:none">
+            <div>
+                <div class="form-group">
+                    <label for="name_input">카페 이름</label>
+                    <input id="name_input" class="form-control" placeholder="">
+                    <label for="station_input">역 이름</label>
+                    <input id="station_input" class="form-control" placeholder="ex) 신촌역, 이대역, 홍대입구역">
+                    <label for="map_url_input">지도 URL</label>
+                    <input id="map_url_input" class="form-control" placeholder="카카오 상세페이지를 넣어주세요!">
+                </div>
+                <div class="form-group">
+                    <label for="description_input">설명</label>
+                    <textarea id="description_input" class="form-control" rows="2"></textarea>
+                </div>
+                <button onclick="postArticle()" id="btn-post-box2" type="button" class="btn btn-outline-success">새로운 카페
+                    등록하기!
+                </button>
+            </div>
+        </div>
+        <div id="cards-box" class="card-columns">
+        </div>
+
+    </body>
+
+</html>
