@@ -1,0 +1,13 @@
+
+venv/Lib/site-packages/bs4-0.0.1-py3.8.egg-info/dependency_links.txt
+venv/Lib/site-packages/beautifulsoup4-4.9.3.dist-info/WHEEL
+*.txt
+*.py
+*.pyc
+*.txt
+*.rst
+.idea/workspace.xml
+venv/Lib/site-packages/markupsafe/_speedups.cp38-win_amd64.pyd
+venv/Lib/site-packages/bson/_cbson.cp38-win_amd64.pyd
+venv/Lib/site-packages/pymongo/_cmessage.cp38-win_amd64.pyd
+*.exe
