@@ -40,7 +40,7 @@ def post_article():
 @app.route('/cafe', methods=["GET"])
 def read_articles():
     # 1. mongoDB에서 _id 값을 제외한 모든 데이터 조회해오기 (Read)
-    search_receive = request.form('search_give')
+    search_receive = request.args.get('search_give')
     resultlist = list(db.cafe.find({'station' : search_receive},{"_id":0}))
     # 2. articles라는 키 값으로 article 정보 보내주기
     return jsonify({'result': 'success', 'cafe': resultlist})

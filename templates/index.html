@@ -198,11 +198,12 @@
                 console.log(search)
                 $.ajax({
                     type: "GET",
-                    url: "/cafe",
-                    data: {search_give: search},
+                    url: "/cafe?search_give="+search,
+                    data: {},
                     success: function (response) {
                         alert("야호")
                         let cafes = response['cafe'];
+                        $("#cards-box").empty();
                         for (let i = 0; i < cafes.length; i++) {
                             makeCard(cafes[i]["image_url"], cafes[i]["map_url"], cafes[i]["name"], cafes[i]["station"], cafes[i]["description"])
                         }
@@ -219,7 +220,7 @@
                         <p class="card-text comment">${description}</p>
                         </div>
                     </div>`;
-                $("#cards-box").empty();
+
                 $("#cards-box").append(temp_html);
             }
 

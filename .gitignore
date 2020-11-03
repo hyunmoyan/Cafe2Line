@@ -11,3 +11,8 @@ venv/Lib/site-packages/markupsafe/_speedups.cp38-win_amd64.pyd
 venv/Lib/site-packages/bson/_cbson.cp38-win_amd64.pyd
 venv/Lib/site-packages/pymongo/_cmessage.cp38-win_amd64.pyd
 *.exe
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+*.xml
+.idea/webProject.iml
