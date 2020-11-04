@@ -14,7 +14,7 @@
 
 ## 핵심 기능  Key Feature
 - 2호선 역을 검색하면, 카페 정보가 카드형태로 보여집니다. (Search station name, then we will show you cafes in card shape)
-- 2호선 역 근처, 나만 아는 카페를 등록하실 수 있습니다. (You can upload cafes that you think it`s special)
+- 2호선 역 근처, 나만 아는 카페를 등록하실 수 있습니다. (You can upload cafe that you think it`s special)
 
 ## 사용 How To Use
 - 사용하고 싶도록 유용한 몇 가지 예를 적습니다. 코드 블록과 스크린샷 포함.
