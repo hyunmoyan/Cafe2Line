@@ -21,6 +21,13 @@
 - (wiki가 있을 경우) _더 많은 예시와 사용 예제는 [Wiki](wiki)를 참고하세요._
 ![](header.png)
 
+## API
+
+이름|기능|요청 url|요청 방식|요청 데이터|응답데이터
+---|------|---|---|---|---|
+검색 API|카페 장소 업로드(Create)|/cafe|POST|'name','station', 'map_url','description' , 'tag' (카페이름,역이름, 장소url, 설명)|JSON 형식 {'result': 'success', 'msg': '업로드 성공!'}
+조회 API|역별 카페 불러오기|/cafe|GET|'station_give' (역이름)| JSON 형식 {'result': 'success', 'cafe': result}result = id를 제외한 모든 데이터
+
 ## 자문위원 Advisor
 *(프로젝트 기여자가 있을 경우 적습니다)*
 - Thanks to @ohahohah for everything!
