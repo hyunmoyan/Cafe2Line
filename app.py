@@ -22,7 +22,7 @@ def post_article():
     map_url_receive = request.form['map_url_give']
     description_receive = request.form['description_give']
 
-<<<<<<< HEAD
+
     #api 불러오기
 
 
@@ -32,7 +32,7 @@ def post_article():
 
     header = {"X-Naver-Client-Id": client_id, "X-Naver-Client-Secret": client_secret}
     response = requests.get(url, headers=header)
-=======
+
     #사진 크롤링
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
@@ -40,7 +40,6 @@ def post_article():
     soup = BeautifulSoup(data.text, 'html.parser')
     og_image = soup.select_one('meta[property="og:image"]')
     url_image = og_image['content']
->>>>>>> parent of f107cc3... 네이버 api 구현
 
     cafe = {'name': name_receive, 'station': station_receive, 'map_url': map_url_receive,
             'description': description_receive, 'image_url': url_image}
