@@ -11,7 +11,7 @@ db = client.cafe_two_line  # 'dbsparta'라는 이름의 db를 만들거나 사�
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index4.html')
 
 
 @app.route('/cafe', methods=['POST'])
@@ -21,6 +21,9 @@ def post_article():
     station_receive = request.form['station_give']
     map_url_receive = request.form['map_url_give']
     description_receive = request.form['description_give']
+
+    client_id = ""
+    client_secret=""
 
 
     #api 불러오기
