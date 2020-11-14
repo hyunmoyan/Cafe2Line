@@ -18,3 +18,4 @@ venv/Lib/site-packages/pymongo/_cmessage.cp38-win_amd64.pyd
 .idea/webProject.iml
 
 config.json
+templates/index3.html
