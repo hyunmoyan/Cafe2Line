@@ -22,8 +22,14 @@ def post_article():
     map_url_receive = request.form['map_url_give']
     description_receive = request.form['description_give']
 
-    client_id = ""
-    client_secret=""
+    import json
+
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+
+    client_id = config["X-Naver-Client-Id"]  # 'secret-key-of-myapp'
+    client_secret = config["X-Naver-Client-Secret"]
+
 
 
     #api 불러오기
