@@ -36,7 +36,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: 100px 0px;
+                padding: 80px 0px 80px 0px;
                 background-image: url("{{url_for('static',filename='station2.png')}}");
                 background-position: 50% 50%;
                 background-size: 70%;
@@ -70,16 +70,44 @@
 
             #input {
                 margin-right: 10px;
+
             }
 
-            @media (max-width:500px) {
+            #post-box {
+                width: 50%;
+                margin: 5% 0px 10% 0px;
+            }
+
+            #btn-post-box {
+                margin: 0px 0px 20px 0px;
+            }
+
+            .wrap {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #cards-box {
+                padding: 5%;
+            }
+
+            @media (max-width: 500px) {
                 .container {
                     background-size: 160%;
+                    padding: 80px 0px 20px 0px;
+                    background-position: 50% 90%;
                 }
+
                 #input {
-                margin-right: 20%;
-                    
-            }
+                    margin-right: 20%;
+
+                }
+
+                #post-box {
+                    width: 80%;
+                }
             }
         </style>
         <script>
@@ -90,6 +118,23 @@
             $(document).ready(function () {
                 $("#cards-box").html("");
             });
+
+            $(document).ready(function () {
+                $("#input").keypress(function (e) {
+                    if (e.which == 13) {
+                        showArticles(); // 실행할 이벤트
+                    }
+                });
+            });
+
+            $(document).ready(function () {
+                $("#btn-post-box2").keypress(function (e) {
+                    if (e.which == 13) {
+                        postArticle();// 실행할 이벤트
+                    }
+                });
+            });
+
 
             function openClose() {
                 // id 값 post-box의 display 값이 block 이면(= 눈에 보이면)
@@ -144,7 +189,6 @@
                     url: "/cafe?search_give=" + search,
                     data: {},
                     success: function (response) {
-                        alert("야호")
                         let cafes = response['cafe'];
                         $("#cards-box").empty();
                         for (let i = 0; i < cafes.length; i++) {
@@ -182,36 +226,42 @@
     </head>
 
     <body>
-        <body>
-            <header class="container">
 
-                <button class="item" id="button"></button>
-                <div class="item" id="search">
-                    <label for="input">역이름:</label>
-                    <input type="email" class="form-control" id="input"
-                           placeholder="ex) 신촌역">
-                </div>
-            </header>
-        </body>
+        <header class="container">
 
+            <button onclick="showArticles()" class="item" id="button">검색</button>
+            <div class="item" id="search">
+                <label for="input">역이름:</label>
+                <input type="email" class="form-control" id="input"
+                       placeholder="ex) 신촌역">
+            </div>
 
-        <div id="post-box" class="form-post" style="display:none">
-            <div>
-                <div class="form-group">
-                    <label for="name_input">카페 이름</label>
-                    <input id="name_input" class="form-control" placeholder="">
-                    <label for="station_input">역 이름</label>
-                    <input id="station_input" class="form-control" placeholder="ex) 신촌역, 이대역, 홍대입구역">
+        </header>
+        <div class="wrap">
+            <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-outline-success">새로운 카페
+                등록하기!
+            </button>
+            <div id="post-box" class="form-post" style="display:none">
+                <div>
+                    <div class="form-group">
+                        <label for="name_input">카페 이름</label>
+                        <input id="name_input" class="form-control" placeholder="">
+                        <label for="station_input">역 이름</label>
+                        <input id="station_input" class="form-control" placeholder="ex) 신촌역, 이대역, 홍대입구역">
+                    </div>
+                    <div class="form-group">
+                        <label for="description_input">설명</label>
+                        <textarea id="description_input" class="form-control" rows="2"></textarea>
+                    </div>
+                    <button onclick="postArticle()" id="btn-post-box2" type="button" class="btn btn-outline-success">새로운
+                        카페
+                        등록하기!
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="description_input">설명</label>
-                    <textarea id="description_input" class="form-control" rows="2"></textarea>
-                </div>
-                <button onclick="postArticle()" id="btn-post-box2" type="button" class="btn btn-outline-success">새로운 카페
-                    등록하기!
-                </button>
             </div>
         </div>
+
+
         <div id="cards-box" class="card-columns">
         </div>
 
