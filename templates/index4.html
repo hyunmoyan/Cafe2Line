@@ -507,8 +507,8 @@
 
             function showArticles() {
                 $("#cards-box").html(``);
-                {#$(".stage").hide();#}
-                let search = $("#input").val()
+                $(".stage").hide();
+                let search = $(".train").val()
                 console.log(search)
                 $.ajax({
                     type: "GET",
