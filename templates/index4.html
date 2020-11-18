@@ -113,7 +113,7 @@
                 }
 
                 .stage {
-                {#display: none;#}
+                    {#display: none;#}
                 }
             }
 
@@ -125,17 +125,15 @@
             {#            }#}
 
             body {
-            {#background-color: #cce6fd;#}{#    overflow: paged-y;#}{#animation: dayTime 40s linear;#}
+                {#background-color: #cce6fd;#}
+                overflow: paged-y;
+            {#animation: dayTime 40s linear;#}
             }
 
-            .stage {
-                overflow: hidden;
-            }
 
             /*CLOUDS*/
 
             .sky {
-                overflow: hidden;
                 position: relative;
             }
 
@@ -200,7 +198,6 @@
                 bottom: 10px;
                 width: 310px;
                 z-index: 1;
-                overflow: hidden;
             }
 
             .wagon,
@@ -240,9 +237,9 @@
                 border: 6px solid #333;
                 bottom: -10px;
                 background-color: #666;
-                -webkit-animation: spin 4s linear;
-                -moz-animation: spin 4s linear;
-                animation: spin 4s linear;
+                -webkit-animation: spin 4s linear infinite;
+                -moz-animation: spin 4s linear infinite;
+                animation: spin 4s linear infinite;
             }
 
             .wagon:before {
@@ -311,7 +308,7 @@
                 position: absolute;
                 width: 15px;
                 height: 15px;
-                background-color: red;
+                background-color: $ red;
                 right: -6px;
                 bottom: 10px;
                 -webkit-animation: puf 4s 2;
@@ -328,8 +325,8 @@
             }
 
             .train {
-                -webkit-animation: voyage 20s linear;
-                animation: voyage 20s linear;
+                -webkit-animation: voyage 20s linear infinite;
+                animation: voyage 20s linear infinite;
             }
 
 
@@ -457,6 +454,7 @@
                 });
             });
 
+
             function openClose() {
                 // id 값 post-box의 display 값이 block 이면(= 눈에 보이면)
                 if ($("#post-box").css("display") == "block") {
@@ -464,15 +462,11 @@
                     $("#post-box").hide();
                     // 다시 버튼을 클릭하면, 박스 열기를 할 수 있게 텍스트 바꿔두기
                     $("#btn-post-box").text("새로운 카페 등록하기!");
-
-                    $("#train").show();
                 } else {
                     // 아니면(눈에 보이지 않으면) post-box를 펴라
                     $("#post-box").show();
                     // 다시 버튼을 클릭하면, 박스 닫기를 할 수 있게 텍스트 바꿔두기
                     $("#btn-post-box").text("포스팅 박스 닫기");
-
-                    $("#train").hide();
                 }
             }
 
@@ -585,16 +579,12 @@
                 </div>
             </div>
         </div>
-
-        <div id="cards-box" class="card-columns">
-        </div>
-
         <section class="stage">
             <div class="sky">
                 <div class="cloud"></div>
                 <div class="cloud"></div>
             </div>
-            <div id="train" class="train">
+            <div class="train">
                 <div class="wagon"></div>
                 <div class="wagon"></div>
                 <div class="wagon"></div>
@@ -608,6 +598,10 @@
                 </div>
             </div>
         </section>
+
+        <div id="cards-box" class="card-columns">
+        </div>
+
     </body>
 
 </html>
