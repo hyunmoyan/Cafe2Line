@@ -240,9 +240,9 @@
                 border: 6px solid #333;
                 bottom: -10px;
                 background-color: #666;
-                -webkit-animation: spin 4s linear;
-                -moz-animation: spin 4s linear;
-                animation: spin 4s linear;
+                -webkit-animation: spin 4s linear infinite;
+                -moz-animation: spin 4s linear infinite;
+                animation: spin 4s linear infinite;
             }
 
             .wagon:before {
@@ -328,8 +328,8 @@
             }
 
             .train {
-                -webkit-animation: voyage 20s linear;
-                animation: voyage 20s linear;
+                -webkit-animation: voyage 20s linear infinite;
+                animation: voyage 20s linear infinite;
             }
 
 
@@ -507,6 +507,7 @@
 
             function showArticles() {
                 $("#cards-box").html(``);
+                {#$(".stage").hide();#}
                 let search = $("#input").val()
                 console.log(search)
                 $.ajax({
@@ -585,10 +586,6 @@
                 </div>
             </div>
         </div>
-
-        <div id="cards-box" class="card-columns">
-        </div>
-
         <section class="stage">
             <div class="sky">
                 <div class="cloud"></div>
@@ -608,6 +605,10 @@
                 </div>
             </div>
         </section>
+        <div id="cards-box" class="card-columns">
+        </div>
+
+
     </body>
 
 </html>
