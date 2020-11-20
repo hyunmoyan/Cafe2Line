@@ -33,7 +33,7 @@ def post_article():
     #api 불러오기
 
 
-    search = name_receive+name_receive+"카페"
+    search = name_receive+" 카페"
 
     url = f"https://openapi.naver.com/v1/search/image?query={search}&filter=medium&display=1"  # json 결과
 
