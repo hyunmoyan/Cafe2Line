@@ -24,23 +24,31 @@ def home():
 @app.route('/cafe', methods=['POST'])
 def post_article():
     # 1. 클라이언트로부터 데이터를 받기
-    name_receive = request.form['name_give']
-    station_receive = request.form['station_give']
-    description_receive = request.form['description_give']
+    name_receive = request.form['name_give'].strip()
+    station_receive = request.form['station_give'].strip()
+    description_receive = request.form['description_give'].strip()
 
-
+    print(name_receive)
+    print(station_receive)
+    print(description_receive)
 
     #api 불러오기
 
 
-    search = name_receive+" 카페"
-
-    url = f"https://openapi.naver.com/v1/search/image?query={search}&filter=medium&display=1"  # json 결과
+    search = station_receive.rstrip('역')+" "+name_receive
+    print(search)
+    url = f"https://openapi.naver.com/v1/search/image?query={search}&filter=medium&display=2"  # json 결과
 
     header = {"X-Naver-Client-Id": client_id, "X-Naver-Client-Secret": client_secret}
     response = requests.get(url, headers=header)
     response_json = json.loads(response.text)
-    image_url = response_json["items"][0]["link"]
+
+    if not response_json["items"]:
+        image_url = "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+        print("List is empty")
+    else:
+        image_url = response_json["items"][0]["link"]
+        print(image_url)
 
 
     cafe = {'name': name_receive, 'station': station_receive,
